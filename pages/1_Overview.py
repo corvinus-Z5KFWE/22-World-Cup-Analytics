@@ -8,7 +8,6 @@ import pandas as pd
 from statsbombpy import sb
 from mplsoccer import Pitch
 import seaborn as sns
-pd.option_context('mode.use_inf_as_null', False)
 df = pd.read_csv('Full_World_Cup_data_finals.csv', sep = '|')
 
 #Crate the sidebar for filtering
@@ -91,8 +90,8 @@ if player:
     
         #Create a heatmap
     kde = sns.kdeplot(
-            df['x_start'],
-            df['y_start'],
+            x = df['x_start'],
+            y = df['y_start'],
             shade_lowest = False,
             alpha = 0.25,
             n_levels = 12,
