@@ -93,9 +93,10 @@ if player:
             x = df['x_start'],
             y = df['y_start'],
             shade_lowest = False,
-            alpha = 0.12,
+            alpha = 0.15,
+            shade = True,
             n_levels = 12,
-            cmap = 'viridis' #rocket_r
+            cmap = 'rocket_r' #viridis
     )
     plt.xlim(0,121)
     plt.ylim(0,80)
