@@ -16,7 +16,7 @@ matches_df = sb.matches(competition_id = 43, season_id = 106)
 match_id = 3869685
 #Use statsbomb API to get data regarding the WC final
 event_df = sb.events(match_id = match_id)
-df_360 = pd.read_json(f'Football-projects/360_data/three-sixty/{match_id}.json')
+df_360 = pd.read_json(f'{match_id}.json')
 df = pd.merge(left = event_df, right = df_360, left_on = 'id', right_on = 'event_uuid' , how = 'left')
 df = df[df['type'] == 'Pass']
 df[['x_start', 'y_start']] = pd.DataFrame(df.location.tolist(), index = df.index)
