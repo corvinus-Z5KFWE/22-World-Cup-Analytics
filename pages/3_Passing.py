@@ -69,7 +69,7 @@ if player:
     num_passes = len(df)
     num_cols = 2
     num_rows = (num_passes + 1) // 2  # Adding 1 to handle odd number of passes
-    player = df['player'].unique()
+    player = df['player'].iloc[0] 
 
     # Ábra létrehozása részábrákkal
     fig, axes = plt.subplots(num_rows, num_cols, figsize=(15, 4 * num_rows))  # Adjust the size as needed
