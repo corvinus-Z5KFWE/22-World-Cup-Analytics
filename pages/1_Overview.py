@@ -8,7 +8,7 @@ import pandas as pd
 from statsbombpy import sb
 from mplsoccer import Pitch
 import seaborn as sns
-
+pd.option_context('mode.use_inf_as_null', False)
 df = pd.read_csv('Full_World_Cup_data_finals.csv', sep = '|')
 
 #Crate the sidebar for filtering
