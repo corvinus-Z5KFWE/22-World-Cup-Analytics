@@ -90,14 +90,14 @@ if player:
                   label='Shot', ax=ax)
     
         #Create a heatmap
-    #kde = sns.kdeplot(
-     #       df['x_start'],
-     #       df['y_start'],
-     #       shade_lowest = False,
-     #       alpha = 0.25,
-      #      n_levels = 12,
-       #     cmap = 'rocket_r'
-    #)
+    kde = sns.kdeplot(
+            df['x_start'],
+            df['y_start'],
+            shade_lowest = False,
+            alpha = 0.25,
+            n_levels = 12,
+            cmap = 'rocket_r'
+    )
     plt.xlim(0,121)
     plt.ylim(0,80)
 
