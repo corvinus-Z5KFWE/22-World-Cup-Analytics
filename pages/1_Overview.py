@@ -93,7 +93,7 @@ if player:
             x = df['x_start'],
             y = df['y_start'],
             shade_lowest = False,
-            alpha = 0.8,
+            alpha = 1,
             n_levels = 12,
             cmap = 'rocket_r'
     )
