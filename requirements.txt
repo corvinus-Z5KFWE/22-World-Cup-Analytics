@@ -1,7 +1,7 @@
 numpy==1.26.2
 pandas==2.2.1
 plotly==5.17.0
-streamlit==1.27.2
+streamlit==1.31.1
 mplsoccer==1.2.2
 seaborn==0.13.2
 matplotlib==3.8.3
