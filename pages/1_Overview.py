@@ -9,7 +9,7 @@ from statsbombpy import sb
 from mplsoccer import Pitch
 import seaborn as sns
 
-df = pd.read_csv('Full_World_Cup_data_small.csv', sep = '|')
+df = pd.read_csv('Full_World_Cup_data_finals.csv', sep = '|')
 
 #Crate the sidebar for filtering
 df['date'] = pd.to_datetime(df['match_date']).dt.date
