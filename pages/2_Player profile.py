@@ -25,6 +25,8 @@ dpercentiles =  df[df["position"] == 'DF'][params].quantile(1)
 mpercentiles =  df[df["position"] == 'MF'][params].quantile(1)
 fpercentiles =  df[df["position"] == 'FW'][params].quantile(1)
 gkstats = df[df["position"] == 'GK'][gkparams_keys].quantile(1)
+print(gkstats)
+print(len(gkstats))
 
 st.sidebar.header("Team")
 pos_team = st.sidebar.multiselect("Filter down to a team:", df["team"].unique())
@@ -52,6 +54,8 @@ if player:
     playervalues = playerdf[params]
     if playerdf['position'].iloc[0] == 'GK':
         values = calculate_playervalues(gkstats)
+        print(len(values))
+        print(values)
     elif playerdf['position'].iloc[0] == 'DF':
         values = calculate_playervalues(dpercentiles)
     elif playerdf['position'].iloc[0] == 'MD':
