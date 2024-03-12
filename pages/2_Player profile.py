@@ -92,7 +92,7 @@ gk_param_mapping = {
 
 # Transform the parameter names using the mapping
 attack_params = [param_mapping[param] for param in params]
-gkparams = [gk_param_mapping[param] for param in gkparams]
+gkparameters = [gk_param_mapping[param] for param in gkparams]
 
 
 #if match_id or pos_team or player:
