@@ -103,7 +103,7 @@ if player:
         params=attack_params  
 # instantiate PyPizza class
     baker = PyPizza(
-        params = params
+        params = params,
         straight_line_color="#F2F2F2",  # color for straight lines
         straight_line_lw=1,             # linewidth for straight lines
         last_circle_lw=0,               # linewidth of last circle
