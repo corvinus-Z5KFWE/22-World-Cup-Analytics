@@ -128,7 +128,7 @@ if player:
         blank_alpha=0.4,                             # alpha for blank-space colors
         kwargs_slices=dict(
             facecolor= plotcolor, edgecolor="#F2F2F2",
-            zorder=2, linewidth=3
+            zorder=2, linewidth= 6
         ),                                           # values to be used when plotting slices
         kwargs_params=dict(
             color="#000000", fontsize=12,
@@ -138,7 +138,7 @@ if player:
             color="#000000", fontsize=10,zorder=100,
             bbox=dict(
                 edgecolor="#000000", facecolor= "#C5C5C5",
-                boxstyle="round,pad=0.4", lw= 10
+                boxstyle="round,pad=0.4", lw= 1
             )
         )                                            # values to be used when adding parameter-values
     )
