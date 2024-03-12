@@ -132,7 +132,7 @@ if player:
         ),                                           # values to be used when plotting slices
         kwargs_params=dict(
             color="#000000", fontsize=12,
-            va="center", linewidth= 2
+            va="center"
         ),                                           # values to be used when adding parameter
         kwargs_values=dict(
             color="#000000", fontsize=10,zorder=100,
