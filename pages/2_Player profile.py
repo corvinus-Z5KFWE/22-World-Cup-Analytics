@@ -12,7 +12,7 @@ params = [
     "dribbles_completed", "touches_live_ball", "tackles_won", "aerials_won_pct"
 ]
 
-gkparams = [
+gkparams_keys = [
     "gk_save_pct","gk_psxg", "gk_psxg_net_per90", "gk_passes_launched","gk_passes_pct_launched",
     "gk_passes", "gk_passes_length_avg", "gk_crosses_stopped_pct", "gk_pens_save_pct", 
     "gk_def_actions_outside_pen_area", "gk_def_actions_outside_pen_area_per90", "gk_goal_kick_length_avg"
@@ -92,13 +92,13 @@ gk_param_mapping = {
 
 # Transform the parameter names using the mapping
 attack_params = [param_mapping[param] for param in params]
-gkparameters = [gk_param_mapping[param] for param in gkparams]
+gkparameters = [gk_param_mapping[param] for param in gkparams_keys]
 
 
 #if match_id or pos_team or player:
 if player:
     if playerdf['position'].iloc[0] == 'GK':
-        params = gkparams
+        params = gkparameters
     else:
         params=attack_params  
 # instantiate PyPizza class
