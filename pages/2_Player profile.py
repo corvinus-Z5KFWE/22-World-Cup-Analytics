@@ -22,7 +22,7 @@ gkpercentiles = df[df["position"] == 'GK'][params].quantile(1)
 dpercentiles =  df[df["position"] == 'DF'][params].quantile(1)
 mpercentiles =  df[df["position"] == 'MF'][params].quantile(1)
 fpercentiles =  df[df["position"] == 'FW'][params].quantile(1)
-gkstats = df[df["position"] == 'GK'][gkparams].quantile(1)
+gkstats = df[df["position"] == 'GK'][gkparams_keys].quantile(1)
 
 st.sidebar.header("Team")
 pos_team = st.sidebar.multiselect("Filter down to a team:", df["team"].unique())
