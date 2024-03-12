@@ -83,15 +83,15 @@ param_mapping = {
 
 gk_param_mapping = {
     "gk_save_pct": 'Save percentage',
-    "gk_pens_save_pct": '"Penalty Save Percentage', 
-    "gk_psxg": 'Post-Shot Expected Goals', 
+    "gk_pens_save_pct": 'Penalty Save\nPercentage', 
+    "gk_psxg": 'Post-Shot\nExpected Goals', 
     "gk_psxg_net_per90":'Post-Shot Expected Goals\nminus Goals Allowed\nper 90 minutes', 
-    "gk_passes_launched":'Passes longer than 40 yards',
+    "gk_passes_launched":'Passes longer than\n40 yards',
     "gk_passes_pct_launched":'Pass Completion Percentage\nlonger than 40yards',
     "gk_passes":'Passes Attempted', 
-    "gk_passes_length_avg":'Average length of passes\nexlcuding goal kicks',
+    "gk_passes_length_avg":'Average length\nof passes\nexlcuding goal kicks',
     "gk_goal_kick_length_avg":'Average length\nof goal kicks',
-    "gk_crosses_stopped_pct":'Percentage of crosses stopeed', 
+    "gk_crosses_stopped_pct":'Percentage of\ncrosses stopeed', 
     "gk_avg_distance_def_actions":'Average distance\n of defensive actions', 
     "gk_def_actions_outside_pen_area_per90": 'Defence actions\nper 90 minutes'
 }
