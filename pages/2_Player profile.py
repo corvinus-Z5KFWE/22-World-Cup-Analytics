@@ -138,7 +138,7 @@ if player:
             color="#000000", fontsize=10,zorder=100,
             bbox=dict(
                 edgecolor="#000000", facecolor= "#C5C5C5",
-                boxstyle="round,pad=0.4", lw= 1
+                boxstyle="round,pad=0.4", lw= 10
             )
         )                                            # values to be used when adding parameter-values
     )
