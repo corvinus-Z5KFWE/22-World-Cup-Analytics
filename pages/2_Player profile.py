@@ -100,7 +100,8 @@ gk_param_mapping = {
 attack_params = [param_mapping[param] for param in params]
 gkparameters = [gk_param_mapping[param] for param in gkparams_keys]
 
-
+# Reset matplotlib style to default
+plt.style.use('default')
 #if match_id or pos_team or player:
 if player:
     if playerdf['position'].iloc[0] == 'GK':
