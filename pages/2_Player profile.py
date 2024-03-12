@@ -125,14 +125,14 @@ if player:
         values,                                      # list of values
         figsize=(8, 8),                              # adjust figsize according to your need
         color_blank_space=["#C5C5C5"]*len(params),   # use same color to fill blank space
-        blank_alpha=0.8,                             # alpha for blank-space colors
+        blank_alpha=0.6,                             # alpha for blank-space colors
         kwargs_slices=dict(
             facecolor= plotcolor, edgecolor="#F2F2F2",
             zorder=2, linewidth= 3
         ),                                           # values to be used when plotting slices
         kwargs_params=dict(
             color="#000000", fontsize=12,
-            va="center"
+            va="center", linewidth= 2
         ),                                           # values to be used when adding parameter
         kwargs_values=dict(
             color="#000000", fontsize=10,zorder=100,
