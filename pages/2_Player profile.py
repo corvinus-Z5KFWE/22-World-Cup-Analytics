@@ -12,10 +12,17 @@ params = [
     "dribbles_completed", "touches_live_ball", "tackles_won", "aerials_won_pct"
 ]
 
+gkparams = [
+    "gk_save_pct","gk_psxg", "gk_psxg_net_per90", "gk_passes_launched","gk_passes_pct_launched",
+    "gk_passes", "gk_passes_length_avg", "gk_crosses_stopped_pct", "gk_pens_save_pct", 
+    "gk_def_actions_outside_pen_area", "gk_def_actions_outside_pen_area_per90", "gk_goal_kick_length_avg"
+]
+
 gkpercentiles = df[df["position"] == 'GK'][params].quantile(1)
 dpercentiles =  df[df["position"] == 'DF'][params].quantile(1)
 mpercentiles =  df[df["position"] == 'MF'][params].quantile(1)
 fpercentiles =  df[df["position"] == 'FW'][params].quantile(1)
+gkstats = df[df["position"] == 'GK'][gkparams].quantile(1)
 
 st.sidebar.header("Team")
 pos_team = st.sidebar.multiselect("Filter down to a team:", df["team"].unique())
@@ -42,7 +49,7 @@ if player:
     playerdf = df[df["player"].isin(player)]  #Loc the selected player
     playervalues = playerdf[params]
     if playerdf['position'].iloc[0] == 'GK':
-        values = calculate_playervalues(gkpercentiles)
+        values = calculate_playervalues(gkstats)
     elif playerdf['position'].iloc[0] == 'DF':
         values = calculate_playervalues(dpercentiles)
     elif playerdf['position'].iloc[0] == 'MD':
@@ -68,15 +75,35 @@ param_mapping = {
     "aerials_won_pct": "Percentage\nof aerials won"
 }
 
+gk_param_mapping = {
+    "gk_save_pct": 'Save percentage',
+    "gk_pens_save_pct": '"Penalty Save Percentage', 
+    "gk_psxg": 'Post-Shot Expected Goals', 
+    "gk_psxg_net_per90":'Post-Shot Expected Goals\nminus Goals Allowed\nper 90 minutes', 
+    "gk_passes_launched":'Passes longer than 40 yards',
+    "gk_passes_pct_launched":'Pass Completion Percentage\nlonger than 40yards',
+    "gk_passes":'Passes Attempted', 
+    "gk_passes_length_avg":'Average length of passes\nexlcuding goal kicks',
+    "gk_goal_kick_length_avg":'Average length\nof goal kicks',
+    "gk_crosses_stopped_pct":'Percentage of crosses stopeed', 
+    "gk_avg_distance_def_actions":'Average distance\n of defensive actions', 
+    "gk_def_actions_outside_pen_area_per90": 'Defence actions\nper 90 minutes'
+}
+
 # Transform the parameter names using the mapping
 attack_params = [param_mapping[param] for param in params]
+gkparams = [gk_param_mapping[param] for param in gkparams]
 
 
 #if match_id or pos_team or player:
 if player:
+    if playerdf['position'].iloc[0] == 'GK':
+        params = gkparams
+    else:
+        params=attack_params  
 # instantiate PyPizza class
     baker = PyPizza(
-        params=attack_params,                  # list of parameters
+        params = params
         straight_line_color="#F2F2F2",  # color for straight lines
         straight_line_lw=1,             # linewidth for straight lines
         last_circle_lw=0,               # linewidth of last circle
