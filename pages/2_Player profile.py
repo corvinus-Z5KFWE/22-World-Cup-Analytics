@@ -13,9 +13,9 @@ params = [
 ]
 
 gkparams_keys = [
-    "gk_save_pct","gk_psxg", "gk_psxg_net_per90", "gk_passes_launched","gk_passes_pct_launched",
-    "gk_passes", "gk_passes_length_avg", "gk_crosses_stopped_pct", "gk_pens_save_pct", 
-    "gk_def_actions_outside_pen_area", "gk_def_actions_outside_pen_area_per90", "gk_goal_kick_length_avg"
+    "gk_save_pct","gk_psxg", "gk_pens_save_pct", "gk_psxg","gk_psxg_net_per90",
+    "gk_passes_launched", "gk_passes", "gk_passes_length_avg", "gk_goal_kick_length_avg", 
+    "gk_crosses_stopped_pct", "gk_avg_distance_def_actions", "gk_def_actions_outside_pen_area_per90"
 ]
 
 gkpercentiles = df[df["position"] == 'GK'][params].quantile(1)
