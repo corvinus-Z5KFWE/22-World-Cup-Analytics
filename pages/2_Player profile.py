@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 
 
 df = pd.read_csv('player_stats_merged_with_full_names2.csv', sep = ';')
+duplicate_indexes = df.index[df.index.duplicated()]
+print("Duplicate Indexes:", duplicate_indexes)
 params = [
     "goals", "npxg", "xg_net", "pass_xa", "sca",
     "touches_att_pen_area", "progressive_passes", "progressive_passes_received",
