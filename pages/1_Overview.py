@@ -147,7 +147,6 @@ def create_shot_map(df):
                         edgecolors='#006A4E',  # give the markers a charcoal border
                         c='None',  # no facecolor for the markers
                         hatch='///',  # the all important hatch (triple diagonal lines)
-                        # for other markers types see: https://matplotlib.org/api/markers_api.html
                         marker='o',
                         label='On-target',
                         ax=ax)
@@ -158,8 +157,7 @@ def create_shot_map(df):
                         s=(shotdf_off_target.shot_statsbomb_xg * 1900) + 100,
                         edgecolors='#b94b75',  # give the markers a charcoal border
                         c='None',  # no facecolor for the markers
-                        hatch='///',  # the all important hatch (triple diagonal lines)
-                        # for other markers types see: https://matplotlib.org/api/markers_api.html
+                        hatch='///',  
                         marker='o',
                         label='Off target',
                         ax=ax)
@@ -191,7 +189,7 @@ def create_shot_map(df):
 
     custom_legend_text = f'Bigger ball size -> Bigger xG\nTotal Shots: {total_shots}\nTotal goals: {goals}\nExpected goals: {xg:.2f}\nShots on target: {targetlen}\nShots off target: {offtargetlen}\nShots blocked/ Other: {blockedlen}'
     ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=10, verticalalignment='top')
-    ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=10, verticalalignment='top')
+    ax.legend(edgecolor='None', fontsize=12, loc='upper left', handlelength=2.5, bbox_to_anchor=(1, 1),ncol=1, columnspacing=0.5, borderpad=0.5)
     ax.set_title(f'All of {player}\'s shots \n{match}', fontsize= 14)
     st.pyplot(fig)
 
