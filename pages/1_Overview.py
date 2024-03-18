@@ -160,7 +160,7 @@ def create_shot_map(df):
                         c='None',  # no facecolor for the markers
                         hatch='///',  # the all important hatch (triple diagonal lines)
                         # for other markers types see: https://matplotlib.org/api/markers_api.html
-                        marker='v',
+                        marker='o',
                         label='Off target',
                         ax=ax)
     
@@ -170,7 +170,7 @@ def create_shot_map(df):
                         s=(shotdf_blocked.shot_statsbomb_xg * 1900) + 100,
                         edgecolors='grey',  # give the markers a charcoal border
                         c='grey',  # no facecolor for the markers
-                        marker='s',
+                        marker='o',
                         label='Blocked/Other',
                         ax=ax)
 
@@ -183,11 +183,11 @@ def create_shot_map(df):
                         linewidths=0.3,
                         c='white',
                         marker='football',
-                        label='Goal',
+                        label='o',
                         ax=ax)
     
 
-    ax.legend( edgecolor='None', fontsize= 12 , loc='upper left', handlelength= 4 )
+    ax.legend( edgecolor='None', fontsize= 12 , loc='upper left', handlelength= 1 )
 
     custom_legend_text = f'Bigger ball size -> Bigger xG\nTotal Shots: {total_shots}\nTotal goals: {goals}\nExpected goals: {xg}\nShots on target: {targetlen}\nShots off target: {offtargetlen}\nShots blocked/ Other: {blockedlen}'
     ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=10, verticalalignment='top')
