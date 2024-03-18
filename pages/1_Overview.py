@@ -113,7 +113,7 @@ def create_pass_map(df):
 
 # Adjust the x and y values according to your plot's layout
     ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=10, verticalalignment='top')
-    ax_title = ax.set_title(f'All of {player}\'s passes & heatmap\n{match}', fontsize= 14)
+    ax.set_title(f'All of {player}\'s passes & heatmap\n{match}', fontsize= 14)
     st.pyplot(fig)
 
 def create_shot_map(df): 
@@ -158,9 +158,9 @@ def create_shot_map(df):
 
     ax.legend( edgecolor='None', fontsize= 20 , loc='upper left', handlelength= 1)
 
-    custom_legend_text = f'Total Shots: {total_shots}\nTotal goals: {goals}\nExpected goals: {uncompleted_passes}'
+    custom_legend_text = f'Total Shots: {total_shots}\nTotal goals: {goals}\nExpected goals: {xg}'
     ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=10, verticalalignment='top')
-    ax_title = ax.set_title(f'All of {player}\'s passes & heatmap\n{match}', fontsize= 14)
+    ax.set_title(f'All of {player}\'s shots \n{match}', fontsize= 14)
     st.pyplot(fig)
 
 col1, col2 = st.columns(2)
