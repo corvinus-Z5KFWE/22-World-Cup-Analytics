@@ -33,6 +33,7 @@ st.sidebar.header("Matches")
 match_id = st.sidebar.multiselect("Pick your match:", df["match_id"].unique())
 if match_id:
     df = df[df["match_id"].isin(match_id)]  # Apply match filter directly
+    shotdf = shotdf[shotdf["match_id"].isin(match_id)]
 
 st.sidebar.header("Team")
 pos_team = st.sidebar.multiselect("Filter down to the team with possession:", df["team"].unique())
