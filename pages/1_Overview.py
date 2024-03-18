@@ -140,6 +140,18 @@ def create_shot_map(df):
 
     fig, ax = pitch.draw(figsize=(10, 8))
 
+    # plot goal shots with a football marker
+    # 'edgecolors' sets the color of the pentagons and edges, 'c' sets the color of the hexagons
+    sc2 = pitch.scatter(shotdf_goal.x_start, shotdf_goal.y_start,
+                        # size varies between 100 and 1900 (points squared)
+                        s=(shotdf_goal.shot_statsbomb_xg * 1900) + 100,
+                        edgecolors='black',
+                        linewidths=0.3,
+                        c='white',
+                        marker='football',
+                        label='Goal',
+                        ax=ax)
+
     # plot on-target shots with hatch
     sc1 = pitch.scatter(shotdf_on_target.x_start, shotdf_on_target.y_start,
                         # size varies between 100 and 1900 (points squared)
@@ -172,20 +184,7 @@ def create_shot_map(df):
                         label='Blocked/Other',
                         ax=ax)
 
-    # plot goal shots with a football marker
-    # 'edgecolors' sets the color of the pentagons and edges, 'c' sets the color of the hexagons
-    sc2 = pitch.scatter(shotdf_goal.x_start, shotdf_goal.y_start,
-                        # size varies between 100 and 1900 (points squared)
-                        s=(shotdf_goal.shot_statsbomb_xg * 1900) + 100,
-                        edgecolors='black',
-                        linewidths=0.3,
-                        c='white',
-                        marker='football',
-                        label='Goal',
-                        ax=ax)
-    
-
-    ax.legend( edgecolor='None', fontsize= 12 , loc='upper left',  columnspacing=1.5, borderpad=2.5 ) #handlelength= 4,
+    ax.legend( edgecolor='None', fontsize= 12 ,handlelength= 2.5, loc='upper left',  columnspacing=1.5, borderpad=2.5 )
 
     custom_legend_text = f'Bigger ball size -> Bigger xG\nTotal Shots: {total_shots}\nTotal goals: {goals}\nExpected goals: {xg:.2f}\nShots on target: {targetlen}\nShots off target: {offtargetlen}\nShots blocked/ Other: {blockedlen}'
     ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=10, verticalalignment='top')
