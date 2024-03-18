@@ -12,7 +12,8 @@ df = pd.read_csv('Full_World_Cup_data_pass_20240318.csv', sep = '|')
 shotdf = pd.read_csv('Full_World_Cup_data_shot_20240318.csv', sep = '|')
 
 #Crate the sidebar for filtering
-#df['date'] = pd.to_datetime(df['match_date']).dt.date
+df['date'] = pd.to_datetime(df['match_date']).dt.date
+df['date'] = df['match_date']
 #getting the min and max date of the start date 
 startDate = df['date'].min()
 endDate = df['date'].max()
