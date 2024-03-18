@@ -155,6 +155,9 @@ def create_shot_map(df):
                         marker='football',
                         label='Goal',
                         ax=ax)
+    
+    plt.xlim(0,121)
+    plt.ylim(0,80)
 
     ax.legend( edgecolor='None', fontsize= 20 , loc='upper left', handlelength= 1)
 
