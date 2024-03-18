@@ -144,7 +144,7 @@ def create_shot_map(df):
     sc1 = pitch.scatter(shotdf_on_target.x_start, shotdf_on_target.y_start,
                         # size varies between 100 and 1900 (points squared)
                         s=(shotdf_on_target.shot_statsbomb_xg * 1900) + 100,
-                        edgecolors='006A4E',  # give the markers a charcoal border
+                        edgecolors='#006A4E',  # give the markers a charcoal border
                         c='red',  # no facecolor for the markers
                         hatch='///',  # the all important hatch (triple diagonal lines)
                         # for other markers types see: https://matplotlib.org/api/markers_api.html
