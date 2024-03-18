@@ -104,8 +104,8 @@ def create_pass_map(df):
             n_levels = 12,
             cmap = 'rocket_r' #viridis
     )
-    #plt.xlim(0,121)
-    #plt.ylim(0,80)
+    plt.xlim(0,121)
+    plt.ylim(0,80)
 
     # Plot the legend
     ax.legend( edgecolor='None', fontsize= 12 , loc='upper left', handlelength= 4)
@@ -187,7 +187,7 @@ def create_shot_map(df):
 
     ax.legend( edgecolor='None', fontsize= 12 ,handlelength= 2.5, loc='upper left',  columnspacing=1.5, borderpad=2.5 )
 
-    custom_legend_text = f'Bigger ball size -> Bigger xG\nTotal Shots: {total_shots}\nTotal goals: {goals}\nExpected goals: {xg:.2f}\nShots on target: {targetlen}\nShots off target: {offtargetlen}\nShots blocked/ Other: {blockedlen}'
+    custom_legend_text = f'Bigger ball size -> Bigger xG\nTotal goals: {goals}\nExpected goals: {xg:.2f}\nTotal Shots: {total_shots}\nShots on target: {targetlen}\nShots off target: {offtargetlen}\nShots blocked/ Other: {blockedlen}'
     ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=10, verticalalignment='top')
     #ax.legend(edgecolor='None', fontsize=12, loc='upper left', handlelength=2.5, bbox_to_anchor=(1, 1),ncol=1, columnspacing=0.5, borderpad=0.5)
     ax.set_title(f'All of {player}\'s shots \n{match}', fontsize= 14)
