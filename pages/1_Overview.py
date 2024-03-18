@@ -133,7 +133,7 @@ def create_shot_map(df):
     fig, ax = pitch.draw(figsize=(10, 8))
 
     # plot non-goal shots with hatch
-    sc1 = pitch.scatter(shotdf_goal.x_start, shotdf_non_goal.y_start,
+    sc1 = pitch.scatter(shotdf_non_goal.x_start, shotdf_non_goal.y_start,
                         # size varies between 100 and 1900 (points squared)
                         s=(shotdf_non_goal.shot_statsbomb_xg * 1900) + 100,
                         edgecolors='#b94b75',  # give the markers a charcoal border
