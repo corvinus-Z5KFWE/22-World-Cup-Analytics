@@ -148,7 +148,7 @@ def create_shot_map(df):
                         c='None',  # no facecolor for the markers
                         hatch='///',  # the all important hatch (triple diagonal lines)
                         # for other markers types see: https://matplotlib.org/api/markers_api.html
-                        marker='^',
+                        marker='o',
                         label='On-target',
                         ax=ax)
     
@@ -183,7 +183,7 @@ def create_shot_map(df):
                         linewidths=0.3,
                         c='white',
                         marker='football',
-                        label='o',
+                        label='football',
                         ax=ax)
     
 
