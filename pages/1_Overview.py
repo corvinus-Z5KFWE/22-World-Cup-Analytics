@@ -158,7 +158,7 @@ def create_shot_map(df):
                         s=(shotdf_off_target.shot_statsbomb_xg * 1900) + 100,
                         edgecolors='#b94b75',  # give the markers a charcoal border
                         c='None',  # no facecolor for the markers
-                        hatch='x',  # the all important hatch (triple diagonal lines)
+                        hatch='///',  # the all important hatch (triple diagonal lines)
                         # for other markers types see: https://matplotlib.org/api/markers_api.html
                         marker='o',
                         label='Off target',
@@ -168,9 +168,9 @@ def create_shot_map(df):
     sc1 = pitch.scatter(shotdf_blocked.x_start, shotdf_blocked.y_start,
                         # size varies between 100 and 1900 (points squared)
                         s=(shotdf_blocked.shot_statsbomb_xg * 1900) + 100,
-                        edgecolors='grey',  # give the markers a charcoal border
+                        edgecolors='black',  # give the markers a charcoal border
                         c='None',  # no facecolor for the markers
-                        hatch='*',  # the all important hatch (triple diagonal lines)
+                        hatch='X',  # the all important hatch (triple diagonal lines)
                         # for other markers types see: https://matplotlib.org/api/markers_api.html
                         marker='o',
                         label='Blocked/Other',
@@ -182,7 +182,7 @@ def create_shot_map(df):
                         # size varies between 100 and 1900 (points squared)
                         s=(shotdf_goal.shot_statsbomb_xg * 1900) + 100,
                         edgecolors='black',
-                        linewidths=0.1,
+                        linewidths=0.3,
                         c='white',
                         marker='football',
                         label='Goal',
