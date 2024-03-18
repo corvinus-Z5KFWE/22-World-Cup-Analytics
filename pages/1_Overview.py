@@ -191,7 +191,7 @@ def create_shot_map(df):
 
     custom_legend_text = f'Bigger ball size -> Bigger xG\nTotal Shots: {total_shots}\nTotal goals: {goals}\nExpected goals: {xg}\nShots on target: {targetlen}\nShots off target: {offtargetlen}\nShots blocked/ Other: {blockedlen}'
     ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=10, verticalalignment='top')
-    ax.set_title(f'All of {player}\'s shots \n{match}, fontsize= 14)
+    ax.set_title(f'All of {player}\'s shots \n{match}', fontsize= 14)
     st.pyplot(fig)
 
 if player:
