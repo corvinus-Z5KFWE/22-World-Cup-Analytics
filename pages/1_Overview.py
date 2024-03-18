@@ -148,7 +148,7 @@ def create_shot_map(df):
                         c='None',  # no facecolor for the markers
                         hatch='///',  # the all important hatch (triple diagonal lines)
                         # for other markers types see: https://matplotlib.org/api/markers_api.html
-                        marker='o',
+                        marker='^',
                         label='On-target',
                         ax=ax)
     
@@ -160,7 +160,7 @@ def create_shot_map(df):
                         c='None',  # no facecolor for the markers
                         hatch='///',  # the all important hatch (triple diagonal lines)
                         # for other markers types see: https://matplotlib.org/api/markers_api.html
-                        marker='o',
+                        marker='v',
                         label='Off target',
                         ax=ax)
     
@@ -168,11 +168,9 @@ def create_shot_map(df):
     sc1 = pitch.scatter(shotdf_blocked.x_start, shotdf_blocked.y_start,
                         # size varies between 100 and 1900 (points squared)
                         s=(shotdf_blocked.shot_statsbomb_xg * 1900) + 100,
-                        edgecolors='black',  # give the markers a charcoal border
-                        c='None',  # no facecolor for the markers
-                        hatch='X',  # the all important hatch (triple diagonal lines)
-                        # for other markers types see: https://matplotlib.org/api/markers_api.html
-                        marker='o',
+                        edgecolors='grey',  # give the markers a charcoal border
+                        c='grey',  # no facecolor for the markers
+                        marker='s',
                         label='Blocked/Other',
                         ax=ax)
 
@@ -191,9 +189,9 @@ def create_shot_map(df):
 
     ax.legend( edgecolor='None', fontsize= 12 , loc='upper left', handlelength= 4 )
 
-    custom_legend_text = f'Total Shots: {total_shots}\nTotal goals: {goals}\nExpected goals: {xg}\nShots on target: {targetlen}\Shots off target: {offtargetlen}\nShots blocked/ Other: {blockedlen}'
+    custom_legend_text = f'Bigger ball size -> Bigger xG\nTotal Shots: {total_shots}\nTotal goals: {goals}\nExpected goals: {xg}\nShots on target: {targetlen}\nShots off target: {offtargetlen}\nShots blocked/ Other: {blockedlen}'
     ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=10, verticalalignment='top')
-    ax.set_title(f'All of {player}\'s shots \n{match}\n Bogger size of ball -> Higher xG', fontsize= 14)
+    ax.set_title(f'All of {player}\'s shots \n{match}, fontsize= 14)
     st.pyplot(fig)
 
 if player:
