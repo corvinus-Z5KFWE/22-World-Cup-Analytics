@@ -118,11 +118,19 @@ def create_pass_map(df):
 
 def create_shot_map(df): 
     shotdf_goal = df[df.shot_outcome == 'Goal'].copy()
-    shotdf_non_goal = df[df.shot_outcome != 'Goal'].copy()
+    ontarget = {'Saved',  'Saved to Post', 'Post', 'Saved Off Target'} #006A4E
+    shotdf_on_target = df[df['shot_outcome'].isin(ontarget)].copy()
+    offtarget = {'Off T'} 
+    shotdf_off_target = df[df['shot_outcome'].isin(offtarget)].copy()
+    blockwayrum = {'Blocked',  'Wayward'}
+    shotdf_blocked = df[df['shot_outcome'].isin(blockwayrum)].copy()
     player = df['player'].iloc[0]
     total_shots = len(df)
     goals = len(shotdf_goal)
     xg = df.shot_statsbomb_xg.sum()
+    targetlen = len(shotdf_on_target)
+    offtargetlen = len(shotdf_off_target)
+    blockedlen = len(shotdf_blocked)
     if len(df.match_id.unique()) > 1:
         match = 'All matches'
     else: 
@@ -132,16 +140,40 @@ def create_shot_map(df):
 
     fig, ax = pitch.draw(figsize=(10, 8))
 
-    # plot non-goal shots with hatch
-    sc1 = pitch.scatter(shotdf_non_goal.x_start, shotdf_non_goal.y_start,
+    # plot on-target shots with hatch
+    sc1 = pitch.scatter(shotdf_on_target.x_start, shotdf_on_target.y_start,
                         # size varies between 100 and 1900 (points squared)
-                        s=(shotdf_non_goal.shot_statsbomb_xg * 1900) + 100,
-                        edgecolors='#b94b75',  # give the markers a charcoal border
-                        c='None',  # no facecolor for the markers
-                        hatch='///',  # the all important hatch (triple diagonal lines)
+                        s=(shotdf_on_target.shot_statsbomb_xg * 1900) + 100,
+                        edgecolors='darkgrey',  # give the markers a charcoal border
+                        c='red',  # no facecolor for the markers
+                        hatch='/',  # the all important hatch (triple diagonal lines)
                         # for other markers types see: https://matplotlib.org/api/markers_api.html
                         marker='o',
-                        label='Non-goal',
+                        label='Off-target',
+                        ax=ax)
+    
+    #shots off taerget
+    sc1 = pitch.scatter(shotdf_off_target.x_start, shotdf_off_target.y_start,
+                        # size varies between 100 and 1900 (points squared)
+                        s=(shotdf_off_target.shot_statsbomb_xg * 1900) + 100,
+                        edgecolors='#b94b75',  # give the markers a charcoal border
+                        c='None',  # no facecolor for the markers
+                        hatch='//',  # the all important hatch (triple diagonal lines)
+                        # for other markers types see: https://matplotlib.org/api/markers_api.html
+                        marker='o',
+                        label='Off target',
+                        ax=ax)
+    
+    #Blocked/Wayrum shots
+    sc1 = pitch.scatter(shotdf_blocked.x_start, shotdf_blocked.y_start,
+                        # size varies between 100 and 1900 (points squared)
+                        s=(shotdf_blocked.shot_statsbomb_xg * 1900) + 100,
+                        edgecolors='#b94b75',  # give the markers a charcoal border
+                        c='None',  # no facecolor for the markers
+                        hatch='//',  # the all important hatch (triple diagonal lines)
+                        # for other markers types see: https://matplotlib.org/api/markers_api.html
+                        marker='o',
+                        label='Blocked/Other',
                         ax=ax)
 
     # plot goal shots with a football marker
@@ -157,14 +189,12 @@ def create_shot_map(df):
                         ax=ax)
     
 
-    ax.legend( edgecolor='None', fontsize= 20 , loc='upper left', handlelength= 1)
+    ax.legend( edgecolor='None', fontsize= 12 , loc='upper left', handlelength= 4 )
 
-    custom_legend_text = f'Total Shots: {total_shots}\nTotal goals: {goals}\nExpected goals: {xg}'
+    custom_legend_text = f'Total Shots: {total_shots}\nTotal goals: {goals}\nExpected goals: {xg}\nShots on target: {targetlen}\Shots off target: {offtargetlen}\nShots blocked/ Other: {blockedlen}'
     ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=10, verticalalignment='top')
-    ax.set_title(f'All of {player}\'s shots \n{match}', fontsize= 14)
+    ax.set_title(f'All of {player}\'s shots \n{match}\n Bogger size of ball -> Higher xG', fontsize= 14)
     st.pyplot(fig)
-
-col1, col2 = st.columns(2)
 
 if player:
         create_pass_map(df)
