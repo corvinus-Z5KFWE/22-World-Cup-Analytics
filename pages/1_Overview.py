@@ -183,7 +183,7 @@ def create_shot_map(df):
                         linewidths=0.3,
                         c='white',
                         marker='football',
-                        label='football',
+                        label='Goal',
                         ax=ax)
     
 
