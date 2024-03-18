@@ -47,17 +47,17 @@ player = st.sidebar.multiselect("Filter down to the player in action:", df["play
 if player:
     df = df[df["player"].isin(player)]  # Apply player filter directly
 
-
-
-if player:
-
+def create_pass_map(df): 
     pitch = Pitch(pitch_type = 'statsbomb')
     fig, ax = pitch.draw(figsize = (10,8) )
     mask_complete = df.pass_outcome.isnull()
     mask_goal = df.pass_goal_assist.astype('float').notnull()
     mask_shot = df.pass_shot_assist.astype('float').notnull()
     player = df['player'].iloc[0]
-    match = df['match_id'].iloc[0]
+    if len(df.match_id.unique()) > 1:
+        match = 'All matches'
+    else: 
+        match = df['match_id'].iloc[0]
 
     total_passes = len(df)
     completed_passes = len(df[mask_complete])
@@ -110,6 +110,10 @@ if player:
     ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=10, verticalalignment='top')
     ax_title = ax.set_title(f'All of {player}\'s passes & heatmap\n{match}', fontsize= 14)
     st.pyplot(fig)
+
+
+if player:
+    create_pass_map(df)
 else: 
     st.write("No data available for the selected filters.")
     
