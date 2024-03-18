@@ -6,9 +6,10 @@ import pandas as pd
 import numpy as np
 import pandas as pd
 from statsbombpy import sb
-from mplsoccer import Pitch
+from mplsoccer import Pitch, Sbopen, VerticalPitch
 import seaborn as sns
 df = pd.read_csv('Full_World_Cup_data_finals.csv', sep = '|')
+shotdf = pd.read_csv('Full_World_Cup_data_shot_20240318.csv', sep = '|')
 
 #Crate the sidebar for filtering
 df['date'] = pd.to_datetime(df['match_date']).dt.date
@@ -26,6 +27,7 @@ df = df[(df['date'] >= date1) & (df['date'] <= date2)].copy()
 
 # Create a match_ID
 df['match_id'] = df['competition_stage'] + '_' + df['home_team'] + '_' + df['away_team']
+shotdf['match_id'] = shotdf['competition_stage'] + '_' + shotdf['home_team'] + '_' + shotdf['away_team']
 
 st.sidebar.header("Matches")
 match_id = st.sidebar.multiselect("Pick your match:", df["match_id"].unique())
@@ -36,16 +38,19 @@ st.sidebar.header("Team")
 pos_team = st.sidebar.multiselect("Filter down to the team with possession:", df["team"].unique())
 if pos_team:
     df = df[df["team"].isin(pos_team)]  # Apply team filter directly
+    shotdf = shotdf[shotdf["team"].isin(pos_team)] 
 
 st.sidebar.header("Player Position")
 position = st.sidebar.multiselect("Filter down to players with a specific position:", df["position"].unique())
 if position:
-    df = df[df["position"].isin(position)]  # Apply position filter directly
+    df = df[df["position"].isin(position)]
+    shotdf = shotdf[shotdf["position"].isin(position)]  # Apply position filter directly
 
 st.sidebar.header("Player")
 player = st.sidebar.multiselect("Filter down to the player in action:", df["player"].unique())
 if player:
     df = df[df["player"].isin(player)]  # Apply player filter directly
+    shotdf = shotdf[shotdf["player"].isin(player)]
 
 def create_pass_map(df): 
     pitch = Pitch(pitch_type = 'statsbomb')
@@ -111,9 +116,60 @@ def create_pass_map(df):
     ax_title = ax.set_title(f'All of {player}\'s passes & heatmap\n{match}', fontsize= 14)
     st.pyplot(fig)
 
+def create_shot_map(df): 
+    shotdf_goal = df[df.shot_outcome == 'Goal'].copy()
+    shotdf_non_goal = df[df.shot_outcome != 'Goal'].copy()
+    player = df['player'].iloc[0]
+    total_shots = len(df)
+    goals = len(shotdf_goal)
+    xg = df.shot_statsbomb_xg.sum()
+    if len(df.match_id.unique()) > 1:
+        match = 'All matches'
+    else: 
+        match = df['match_id'].iloc[0]
+
+    pitch = VerticalPitch(line_color='black', half = True)
+
+    fig, ax = pitch.draw(figsize=(10, 8))
+
+    # plot non-goal shots with hatch
+    sc1 = pitch.scatter(shotdf_goal.x_start, shotdf_non_goal.y_start,
+                        # size varies between 100 and 1900 (points squared)
+                        s=(shotdf_non_goal.shot_statsbomb_xg * 1900) + 100,
+                        edgecolors='#b94b75',  # give the markers a charcoal border
+                        c='None',  # no facecolor for the markers
+                        hatch='///',  # the all important hatch (triple diagonal lines)
+                        # for other markers types see: https://matplotlib.org/api/markers_api.html
+                        marker='o',
+                        label='Non-goal',
+                        ax=ax)
+
+    # plot goal shots with a football marker
+    # 'edgecolors' sets the color of the pentagons and edges, 'c' sets the color of the hexagons
+    sc2 = pitch.scatter(shotdf_goal.x_start, shotdf_goal.y_start,
+                        # size varies between 100 and 1900 (points squared)
+                        s=(shotdf_goal.shot_statsbomb_xg * 1900) + 100,
+                        edgecolors='black',
+                        linewidths=0.1,
+                        c='white',
+                        marker='football',
+                        label='Goal',
+                        ax=ax)
+
+    ax.legend( edgecolor='None', fontsize= 20 , loc='upper left', handlelength= 1)
+
+    custom_legend_text = f'Total Shots: {total_shots}\nTotal goals: {goals}\nExpected goals: {uncompleted_passes}'
+    ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=10, verticalalignment='top')
+    ax_title = ax.set_title(f'All of {player}\'s passes & heatmap\n{match}', fontsize= 14)
+    st.pyplot(fig)
+
+col1, col2 = st.columns(2)
 
 if player:
-    create_pass_map(df)
+    with col1:
+        create_pass_map(df)
+    with col2: 
+        create_shot_map(shotdf)
 else: 
     st.write("No data available for the selected filters.")
     
