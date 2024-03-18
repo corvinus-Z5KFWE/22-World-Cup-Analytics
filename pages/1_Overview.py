@@ -185,7 +185,7 @@ def create_shot_map(df):
                         ax=ax)
     
 
-    ax.legend( edgecolor='None', fontsize= 12 , loc='upper left', handlelength= 4, columnspacing=1.5, borderpad=2.5 )
+    ax.legend( edgecolor='None', fontsize= 12 , loc='upper left',  columnspacing=1.5, borderpad=2.5 ) #handlelength= 4,
 
     custom_legend_text = f'Bigger ball size -> Bigger xG\nTotal Shots: {total_shots}\nTotal goals: {goals}\nExpected goals: {xg:.2f}\nShots on target: {targetlen}\nShots off target: {offtargetlen}\nShots blocked/ Other: {blockedlen}'
     ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=10, verticalalignment='top')
