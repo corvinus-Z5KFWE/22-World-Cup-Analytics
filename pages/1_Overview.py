@@ -54,7 +54,7 @@ if player:
     shotdf = shotdf[shotdf["player"].isin(player)]
 
 def create_pass_map(df): 
-    pitch = Pitch(pitch_type = 'statsbomb')
+    pitch = Pitch(pitch_type = 'statsbomb', line_color='black')
     fig, ax = pitch.draw(figsize = (10,8) )
     mask_complete = df.pass_outcome.isnull()
     mask_goal = df.pass_goal_assist.astype('float').notnull()
@@ -104,8 +104,8 @@ def create_pass_map(df):
             n_levels = 12,
             cmap = 'rocket_r' #viridis
     )
-    plt.xlim(0,121)
-    plt.ylim(0,80)
+    #plt.xlim(0,121)
+    #plt.ylim(0,80)
 
     # Plot the legend
     ax.legend( edgecolor='None', fontsize= 12 , loc='upper left', handlelength= 4)
