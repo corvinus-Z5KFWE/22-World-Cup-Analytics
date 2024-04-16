@@ -44,7 +44,7 @@ pos_team = st.sidebar.multiselect("Filter down to the team with possession:", df
 if pos_team:
     df = df[df["team"].isin(pos_team)]  # Apply team filter directly
     shotdf = shotdf[shotdf["team"].isin(pos_team)]
-    defdf = defdf[shotdf["team"].isin(pos_team)]
+    defdf = defdf[defdf["team"].isin(pos_team)]
 
 st.sidebar.header("Player Position")
 position = st.sidebar.multiselect("Filter down to players with a specific position:", df["position"].unique())
