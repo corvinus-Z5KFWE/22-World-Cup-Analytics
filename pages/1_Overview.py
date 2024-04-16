@@ -93,11 +93,11 @@ def create_pass_map(df):
                     lw=3, transparent=True, comet=True, label='uncompleted passes',
                     color='red', ax=ax)
 
-    pitch.scatter(df[mask_goal].x_end, df[mask_goal].y_end, s=100,
+    pitch.scatter(df[mask_goal].x_end, df[mask_goal].y_end, s=200,
                     marker='football', edgecolors='black', c='white', zorder=2,
                     label='Assist', ax=ax)
         
-    pitch.scatter(df[mask_shot].x_end, df[mask_shot].y_end, s=100,
+    pitch.scatter(df[mask_shot].x_end, df[mask_shot].y_end, s=200,
                    edgecolors='white', c='#22312b', zorder=2,
                   label='Shot', ax=ax)
     
@@ -115,7 +115,7 @@ def create_pass_map(df):
     plt.ylim(0,80)
 
     # Plot the legend
-    ax.legend( edgecolor='None', fontsize= 12 , loc='upper left', handlelength= 4)
+    ax.legend( edgecolor='None', fontsize= 12 , loc='upper left', handlelength= 2)
     # Custom legend for statistics
     custom_legend_text = f'Total Passes: {total_passes}\nCompleted Passes: {completed_passes}\nMissed Passes: {uncompleted_passes}\nSuccess Rate: {success_rate:.2f}%\nAverage Pass Length: {average_pass_length}\nAverage Completed Pass Length: {average_length_for_completed_passes}\nAverage Missed Pass Length: {average_length_for_uncompleted_passes}'
 
