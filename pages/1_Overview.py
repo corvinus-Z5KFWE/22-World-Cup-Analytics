@@ -204,7 +204,7 @@ def create_shot_map(df):
 
 def create_defensive_actions(df):
     if len(df) < 1: 
-        print('The player has no defensive actions.')
+        st.markdown('It seems like this player has not contributed defensively.')
     else:
         #Create specific df-s for plottinh
         df_recovery = df[df.type == 'Ball Recovery'].copy()
