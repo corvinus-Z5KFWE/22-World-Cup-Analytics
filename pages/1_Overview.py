@@ -80,7 +80,7 @@ def create_pass_map(df):
     average_length_for_uncompleted_passes = round(df.pass_length[~mask_complete].mean(),2)
     average_pass_length = round(df.pass_length.mean(),2)
 
-    pitch.scatter(x=df['x_start'], y=df['y_start'], ax=ax, s=150)
+    pitch.scatter(x=df['x_start'], y=df['y_start'], ax=ax, s=100)
 
     #Plot the completed passed
     pitch.lines(xstart = df[mask_complete].x_start, ystart = df[mask_complete].y_start,
