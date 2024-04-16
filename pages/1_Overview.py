@@ -115,7 +115,7 @@ def create_pass_map(df):
     plt.ylim(0,80)
 
     # Plot the legend
-    ax.legend( edgecolor='None', fontsize= 18 , loc='upper left', handlelength= 2)
+    ax.legend( edgecolor='None', fontsize= 18 , handlelength= 2.5, loc='upper left',  columnspacing=1.5, borderpad=2.5 )
     # Custom legend for statistics
     custom_legend_text = f'Total Passes: {total_passes}\nCompleted Passes: {completed_passes}\nMissed Passes: {uncompleted_passes}\nSuccess Rate: {success_rate:.2f}%\nAverage Pass Length: {average_pass_length}\nAverage Completed Pass Length: {average_length_for_completed_passes}\nAverage Missed Pass Length: {average_length_for_uncompleted_passes}'
 
@@ -243,7 +243,7 @@ def create_defensive_actions_map(df):
         pitch.scatter(df_intercept.x_start, df_intercept.y_start, alpha = 1, s = 60, color = "grey",  ax=ax,edgecolors="black", label = 'Interceptions')
 
         #Legends and the counts of actions
-        ax.legend( edgecolor='None', fontsize= 9 , loc='upper left', handlelength= 1)
+        ax.legend( edgecolor='None', fontsize= 9 , handlelength= 2.5, loc='upper left',  columnspacing=1.5, borderpad=2.5 )
         custom_legend_text = f'Total Defensive actions: {total_defensive_actions}\nRecoveries: {Recoveries}\nDuels: {Duels}\nClearances: {Clearances}\nBlocks: {Blocks}\nInterceptions: {Interceptions}'
 
         # Adjust the x and y values according to your plot's layout
