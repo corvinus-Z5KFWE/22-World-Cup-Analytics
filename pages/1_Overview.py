@@ -202,7 +202,7 @@ def create_shot_map(df):
         ax.set_title(f'All of {player}\'s shots \n{match}', fontsize= 14)
         st.pyplot(fig)
 
-def create_defensive_actions(df):
+def create_defensive_actions_map(df):
     if len(df) < 1: 
         st.markdown('It seems like this player has not contributed defensively.')
     else:
@@ -252,7 +252,7 @@ def create_defensive_actions(df):
 if player:
         create_pass_map(df)
         create_shot_map(shotdf)
-        create_defensive_actions(defdf)
+        create_defensive_actions_map(defdf)
 else: 
     st.write("No data available for the selected filters.")
     
