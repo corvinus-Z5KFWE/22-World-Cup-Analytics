@@ -237,7 +237,7 @@ def create_defensive_actions_map(df):
 
         #Make the plots
         pitch.scatter(df_recovery.x_start, df_recovery.y_start, alpha = 1, s = 35, color = "red",  ax=ax,edgecolors="black", label = 'Recoveries') #ax=ax['pitch'],
-        pitch.scatter(df_duel.x_start, df_duel.y_start, alpha = 1, s = 35, color = "black",  ax=ax,edgecolors="black", label = 'Duels')
+        pitch.scatter(df_duel.x_start, df_duel.y_start, alpha = 1, s = 35, color = "purple",  ax=ax,edgecolors="black", label = 'Duels')
         pitch.scatter(df_clear.x_start, df_clear.y_start, alpha = 1, s = 35, color = "blue",  ax=ax,edgecolors="black", label = 'Clearances')
         pitch.scatter(df_block.x_start, df_block.y_start, alpha = 1, s = 35, color = "green",  ax=ax,edgecolors="black", label = 'Blocks')
         pitch.scatter(df_intercept.x_start, df_intercept.y_start, alpha = 1, s = 35, color = "grey",  ax=ax,edgecolors="black", label = 'Interceptions')
