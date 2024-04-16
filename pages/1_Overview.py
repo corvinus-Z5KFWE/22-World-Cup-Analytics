@@ -27,9 +27,10 @@ with col2:
 df = df[(df['date'] >= date1) & (df['date'] <= date2)].copy()
 
 # Create a match_ID
-df['match_id'] = df['competition_stage'] + '_' + df['home_team'] + '_' + df['away_team']
-shotdf['match_id'] = shotdf['competition_stage'] + '_' + shotdf['home_team'] + '_' + shotdf['away_team']
-defdf['match_id'] = defdf['competition_stage'] + '_' + defdf['home_team'] + '_' + defdf['away_team']
+dataframes = [df, shotdf, defdf]
+for dataframe in dataframes:
+    dataframe['match_id'] = dataframe['competition_stage'] + '_' + dataframe['home_team'] + '_' + dataframe['away_team']
+
 
 st.sidebar.header("Matches")
 match_id = st.sidebar.multiselect("Pick your match:", df["match_id"].unique())
@@ -154,7 +155,7 @@ def create_shot_map(df):
         # 'edgecolors' sets the color of the pentagons and edges, 'c' sets the color of the hexagons
         sc2 = pitch.scatter(shotdf_goal.x_start, shotdf_goal.y_start,
                             # size varies between 100 and 1900 (points squared)
-                            s=(shotdf_goal.shot_statsbomb_xg * 1900) + 100,
+                            s=(shotdf_goal.shot_statsbomb_xg * 1900) + 150,
                             edgecolors='black',
                             linewidths=0.3,
                             c='white',
@@ -165,7 +166,7 @@ def create_shot_map(df):
         # plot on-target shots with hatch
         sc1 = pitch.scatter(shotdf_on_target.x_start, shotdf_on_target.y_start,
                             # size varies between 100 and 1900 (points squared)
-                            s=(shotdf_on_target.shot_statsbomb_xg * 1900) + 100,
+                            s=(shotdf_on_target.shot_statsbomb_xg * 1900) + 150,
                             edgecolors='#006A4E',  # give the markers a charcoal border
                             c='None',  # no facecolor for the markers
                             hatch='///',  # the all important hatch (triple diagonal lines)
@@ -176,7 +177,7 @@ def create_shot_map(df):
         #shots off taerget
         sc1 = pitch.scatter(shotdf_off_target.x_start, shotdf_off_target.y_start,
                             # size varies between 100 and 1900 (points squared)
-                            s=(shotdf_off_target.shot_statsbomb_xg * 1900) + 100,
+                            s=(shotdf_off_target.shot_statsbomb_xg * 1900) + 150,
                             edgecolors='#b94b75',  # give the markers a charcoal border
                             c='None',  # no facecolor for the markers
                             hatch='///',  
@@ -252,8 +253,9 @@ def create_defensive_actions_map(df):
 
 if player:
         create_pass_map(df)
-        create_shot_map(shotdf)
         create_defensive_actions_map(defdf)
+        create_shot_map(shotdf)
+        
 else: 
     st.write("No data available for the selected filters.")
     
