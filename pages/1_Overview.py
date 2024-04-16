@@ -62,7 +62,7 @@ if player:
 
 def create_pass_map(df):
     pitch = Pitch(pitch_type = 'statsbomb', line_color='black')
-    fig, ax = pitch.draw(figsize = (10,8) )
+    fig, ax = pitch.draw(figsize = (15,12) )
     mask_complete = df.pass_outcome.isnull()
     mask_goal = df.pass_goal_assist.astype('float').notnull()
     mask_shot = df.pass_shot_assist.astype('float').notnull()
@@ -115,13 +115,13 @@ def create_pass_map(df):
     plt.ylim(0,80)
 
     # Plot the legend
-    ax.legend( edgecolor='None', fontsize= 9 , loc='upper left', handlelength= 4)
+    ax.legend( edgecolor='None', fontsize= 12 , loc='upper left', handlelength= 4)
     # Custom legend for statistics
     custom_legend_text = f'Total Passes: {total_passes}\nCompleted Passes: {completed_passes}\nMissed Passes: {uncompleted_passes}\nSuccess Rate: {success_rate:.2f}%\nAverage Pass Length: {average_pass_length}\nAverage Completed Pass Length: {average_length_for_completed_passes}\nAverage Missed Pass Length: {average_length_for_uncompleted_passes}'
 
 # Adjust the x and y values according to your plot's layout
-    ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=9, verticalalignment='top')
-    ax.set_title(f'All of {player}\'s passes & heatmap\n{match}', fontsize= 12)
+    ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=12, verticalalignment='top')
+    ax.set_title(f'All of {player}\'s passes & heatmap\n{match}', fontsize= 16)
     st.pyplot(fig)
 
 def create_shot_map(df):
@@ -195,12 +195,12 @@ def create_shot_map(df):
                             label='Blocked/Other',
                             ax=ax)
 
-        ax.legend( edgecolor='None', fontsize= 9 ,handlelength= 2.5, loc='upper left',  columnspacing=1.5, borderpad=2.5 )
+        ax.legend( edgecolor='None', fontsize= 12 ,handlelength= 2.5, loc='upper left',  columnspacing=1.5, borderpad=2.5 )
 
         custom_legend_text = f'Bigger ball size -> Bigger xG\nTotal goals: {goals}\nExpected goals: {xg:.2f}\nTotal Shots: {total_shots}\nShots on target: {targetlen}\nShots off target: {offtargetlen}\nShots blocked/ Other: {blockedlen}'
-        ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=9, verticalalignment='top')
+        ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=12, verticalalignment='top')
         #ax.legend(edgecolor='None', fontsize=12, loc='upper left', handlelength=2.5, bbox_to_anchor=(1, 1),ncol=1, columnspacing=0.5, borderpad=0.5)
-        ax.set_title(f'All of {player}\'s shots \n{match}', fontsize= 12)
+        ax.set_title(f'All of {player}\'s shots \n{match}', fontsize= 16)
         st.pyplot(fig)
 
 def create_defensive_actions_map(df):
