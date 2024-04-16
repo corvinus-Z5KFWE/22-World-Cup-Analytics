@@ -80,7 +80,7 @@ def create_pass_map(df):
     average_length_for_uncompleted_passes = round(df.pass_length[~mask_complete].mean(),2)
     average_pass_length = round(df.pass_length.mean(),2)
 
-    pitch.scatter(x=df['x_start'], y=df['y_start'], ax=ax, s=200)
+    pitch.scatter(x=df['x_start'], y=df['y_start'], ax=ax, s=150)
 
     #Plot the completed passed
     pitch.lines(xstart = df[mask_complete].x_start, ystart = df[mask_complete].y_start,
@@ -93,11 +93,11 @@ def create_pass_map(df):
                     lw=3, transparent=True, comet=True, label='uncompleted passes',
                     color='red', ax=ax)
 
-    pitch.scatter(df[mask_goal].x_end, df[mask_goal].y_end, s=200,
+    pitch.scatter(df[mask_goal].x_end, df[mask_goal].y_end, s=150,
                     marker='football', edgecolors='black', c='white', zorder=2,
                     label='Assist', ax=ax)
         
-    pitch.scatter(df[mask_shot].x_end, df[mask_shot].y_end, s=200,
+    pitch.scatter(df[mask_shot].x_end, df[mask_shot].y_end, s=150,
                    edgecolors='white', c='#22312b', zorder=2,
                   label='Shot', ax=ax)
     
@@ -115,13 +115,13 @@ def create_pass_map(df):
     plt.ylim(0,80)
 
     # Plot the legend
-    ax.legend( edgecolor='None', fontsize= 12 , loc='upper left', handlelength= 2)
+    ax.legend( edgecolor='None', fontsize= 18 , loc='upper left', handlelength= 2)
     # Custom legend for statistics
     custom_legend_text = f'Total Passes: {total_passes}\nCompleted Passes: {completed_passes}\nMissed Passes: {uncompleted_passes}\nSuccess Rate: {success_rate:.2f}%\nAverage Pass Length: {average_pass_length}\nAverage Completed Pass Length: {average_length_for_completed_passes}\nAverage Missed Pass Length: {average_length_for_uncompleted_passes}'
 
 # Adjust the x and y values according to your plot's layout
-    ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=12, verticalalignment='top')
-    ax.set_title(f'All of {player}\'s passes & heatmap\n{match}', fontsize= 30)
+    ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=18, verticalalignment='top')
+    ax.set_title(f'All of {player}\'s passes & heatmap\n{match}', fontsize= 25)
     st.pyplot(fig)
 
 def create_shot_map(df):
