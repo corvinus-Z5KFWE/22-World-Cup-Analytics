@@ -248,7 +248,7 @@ def create_defensive_actions_map(df):
 
         # Adjust the x and y values according to your plot's layout
         ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=9, verticalalignment='top')
-        ax.set_title(f'All of {player}\'s defensive actions & heatmap\n{match}', fontsize= 12)
+        ax.set_title(f'All of {player}\'s defensive actions & heatmap\n{match}', fontsize= 14)
         st.pyplot(fig)
 
 if player:
