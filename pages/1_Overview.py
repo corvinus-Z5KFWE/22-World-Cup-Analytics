@@ -80,7 +80,7 @@ def create_pass_map(df):
     average_length_for_uncompleted_passes = round(df.pass_length[~mask_complete].mean(),2)
     average_pass_length = round(df.pass_length.mean(),2)
 
-    pitch.scatter(x=df['x_start'], y=df['y_start'], ax=ax)
+    pitch.scatter(x=df['x_start'], y=df['y_start'], ax=ax, s=200)
 
     #Plot the completed passed
     pitch.lines(xstart = df[mask_complete].x_start, ystart = df[mask_complete].y_start,
@@ -121,7 +121,7 @@ def create_pass_map(df):
 
 # Adjust the x and y values according to your plot's layout
     ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=12, verticalalignment='top')
-    ax.set_title(f'All of {player}\'s passes & heatmap\n{match}', fontsize= 16)
+    ax.set_title(f'All of {player}\'s passes & heatmap\n{match}', fontsize= 30)
     st.pyplot(fig)
 
 def create_shot_map(df):
