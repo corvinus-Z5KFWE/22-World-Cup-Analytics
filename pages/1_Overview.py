@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 import pandas as pd
 from statsbombpy import sb
-from mplsoccer import Pitch, Sbopen, VerticalPitch
+from mplsoccer import Pitch,  VerticalPitch
 import seaborn as sns
 df = pd.read_csv('Full_World_Cup_data_pass_20240318.csv', sep = ',')
 shotdf = pd.read_csv('Full_World_Cup_data_shot_20240318.csv', sep = '|')
@@ -155,7 +155,7 @@ def create_shot_map(df):
         # 'edgecolors' sets the color of the pentagons and edges, 'c' sets the color of the hexagons
         sc2 = pitch.scatter(shotdf_goal.x_start, shotdf_goal.y_start,
                             # size varies between 100 and 1900 (points squared)
-                            s=(shotdf_goal.shot_statsbomb_xg * 1900) + 150,
+                            s=(shotdf_goal.shot_statsbomb_xg * 1900) + 200,
                             edgecolors='black',
                             linewidths=0.3,
                             c='white',
@@ -164,9 +164,9 @@ def create_shot_map(df):
                             ax=ax)
 
         # plot on-target shots with hatch
-        sc1 = pitch.scatter(shotdf_on_target.x_start, shotdf_on_target.y_start,
+        pitch.scatter(shotdf_on_target.x_start, shotdf_on_target.y_start,
                             # size varies between 100 and 1900 (points squared)
-                            s=(shotdf_on_target.shot_statsbomb_xg * 1900) + 150,
+                            s=(shotdf_on_target.shot_statsbomb_xg * 1900) + 200,
                             edgecolors='#006A4E',  # give the markers a charcoal border
                             c='None',  # no facecolor for the markers
                             hatch='///',  # the all important hatch (triple diagonal lines)
@@ -175,9 +175,9 @@ def create_shot_map(df):
                             ax=ax)
         
         #shots off taerget
-        sc1 = pitch.scatter(shotdf_off_target.x_start, shotdf_off_target.y_start,
+        pitch.scatter(shotdf_off_target.x_start, shotdf_off_target.y_start,
                             # size varies between 100 and 1900 (points squared)
-                            s=(shotdf_off_target.shot_statsbomb_xg * 1900) + 150,
+                            s=(shotdf_off_target.shot_statsbomb_xg * 1900) + 200,
                             edgecolors='#b94b75',  # give the markers a charcoal border
                             c='None',  # no facecolor for the markers
                             hatch='///',  
@@ -186,9 +186,9 @@ def create_shot_map(df):
                             ax=ax)
         
         #Blocked/Wayrum shots
-        sc1 = pitch.scatter(shotdf_blocked.x_start, shotdf_blocked.y_start,
+        pitch.scatter(shotdf_blocked.x_start, shotdf_blocked.y_start,
                             # size varies between 100 and 1900 (points squared)
-                            s=(shotdf_blocked.shot_statsbomb_xg * 1900) + 100,
+                            s=(shotdf_blocked.shot_statsbomb_xg * 1900) + 200,
                             edgecolors='grey',  # give the markers a charcoal border
                             c='grey',  # no facecolor for the markers
                             marker='o',
@@ -230,17 +230,17 @@ def create_defensive_actions_map(df):
 
         #Create the pitch and the heatmap
         pitch = VerticalPitch(line_color='#000009', line_zorder=2, pitch_color='white')
-        fig, ax = pitch.draw(figsize=(10,8)) #4.4, 6.4, 5.4,7.4
+        fig, ax = pitch.draw(figsize=(10,8)) #4.4, 6.4, 
         player = df['player'].iloc[0]
         hexmap = pitch.hexbin(df.x_start, df.y_start, ax=ax, edgecolors='#f4f4f4',
                             gridsize=(8, 8), cmap= 'rocket_r')
 
         #Make the plots
-        pitch.scatter(df_recovery.x_start, df_recovery.y_start, alpha = 1, s = 35, color = "red",  ax=ax,edgecolors="black", label = 'Recoveries') #ax=ax['pitch'],
-        pitch.scatter(df_duel.x_start, df_duel.y_start, alpha = 1, s = 35, color = "purple",  ax=ax,edgecolors="black", label = 'Duels')
-        pitch.scatter(df_clear.x_start, df_clear.y_start, alpha = 1, s = 35, color = "blue",  ax=ax,edgecolors="black", label = 'Clearances')
-        pitch.scatter(df_block.x_start, df_block.y_start, alpha = 1, s = 35, color = "green",  ax=ax,edgecolors="black", label = 'Blocks')
-        pitch.scatter(df_intercept.x_start, df_intercept.y_start, alpha = 1, s = 35, color = "grey",  ax=ax,edgecolors="black", label = 'Interceptions')
+        pitch.scatter(df_recovery.x_start, df_recovery.y_start, alpha = 1, s = 60, color = "red",  ax=ax,edgecolors="black", label = 'Recoveries') #ax=ax['pitch'],
+        pitch.scatter(df_duel.x_start, df_duel.y_start, alpha = 1, s = 60, color = "purple",  ax=ax,edgecolors="black", label = 'Duels')
+        pitch.scatter(df_clear.x_start, df_clear.y_start, alpha = 1, s = 60, color = "blue",  ax=ax,edgecolors="black", label = 'Clearances')
+        pitch.scatter(df_block.x_start, df_block.y_start, alpha = 1, s = 60, color = "green",  ax=ax,edgecolors="black", label = 'Blocks')
+        pitch.scatter(df_intercept.x_start, df_intercept.y_start, alpha = 1, s = 60, color = "grey",  ax=ax,edgecolors="black", label = 'Interceptions')
 
         #Legends and the counts of actions
         ax.legend( edgecolor='None', fontsize= 9 , loc='upper left', handlelength= 1)
