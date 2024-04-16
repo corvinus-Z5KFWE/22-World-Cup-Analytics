@@ -115,7 +115,7 @@ def create_pass_map(df):
     plt.ylim(0,80)
 
     # Plot the legend
-    ax.legend( edgecolor='None', fontsize= 18 , handlelength= 2.5, loc='upper left',  columnspacing=1.5, borderpad=2.5 )
+    ax.legend( edgecolor='None', fontsize= 18 , handlelength= 1.5, loc='upper left')
     # Custom legend for statistics
     custom_legend_text = f'Total Passes: {total_passes}\nCompleted Passes: {completed_passes}\nMissed Passes: {uncompleted_passes}\nSuccess Rate: {success_rate:.2f}%\nAverage Pass Length: {average_pass_length}\nAverage Completed Pass Length: {average_length_for_completed_passes}\nAverage Missed Pass Length: {average_length_for_uncompleted_passes}'
 
