@@ -19,6 +19,12 @@ gkparams_keys = [
     "gk_goal_kick_length_avg", "gk_crosses_stopped_pct", "gk_avg_distance_def_actions","gk_def_actions_outside_pen_area_per90"
 ]
 
+defmidparam_key = [
+    "tackles_interceptions", "clearances", "ball_recoveries","blocks",
+    "dribbled_past","gca_defense", "dribbles_completed", "gca_per90",
+    "passes_total_distance","passes_completed","progressive_passes", "passes_switches"
+]
+
 gkpercentiles = df[df["position"] == 'GK'][params].quantile(1)
 dpercentiles =  df[df["position"] == 'DF'][params].quantile(1)
 mpercentiles =  df[df["position"] == 'MF'][params].quantile(1)
@@ -54,8 +60,6 @@ if player:
     if playerdf['position'].iloc[0] == 'GK':
         playervalues = playerdf[gkparams_keys]
         values = calculate_playervalues(gkstats)
-        print(len(values))
-        print(values)
     elif playerdf['position'].iloc[0] == 'DF':
         values = calculate_playervalues(dpercentiles)
     elif playerdf['position'].iloc[0] == 'MF':
@@ -96,11 +100,31 @@ gk_param_mapping = {
     "gk_def_actions_outside_pen_area_per90": 'Defence actions\nper 90 minutes'
 }
 
+defmid_param_mapping = {
+    "tackles_interceptions": 'Tackles and interceptions',
+    "clearances": 'Clearances',
+    'ball_recoveries': 'Recoveries',
+    "blocks": 'Blocks',
+    'dribbled_past': 'Player dribbled\nPast',
+    'gca_defense': 'Defensive actions\n leading to goal',
+    'dribbles_completed': 'Dribbles completed',
+    'gca_per90': 'Goal creating actions\n per 90 minutes',
+    'passes_total_distance': 'Total distance\n of passes',
+    'passes_completed': 'Passes completed',
+    'progressive_passes': 'Progressive passes',
+    'passes_switches' : 'Switch passes\n of the field'
+}
+
 # Transform the parameter names using the mapping
 attack_params = [param_mapping[param] for param in params]
 gkparameters = [gk_param_mapping[param] for param in gkparams_keys]
+defmid_params = [defmid_param_mapping[param] for param in defmidparam_key]
 
-def create_pizza_plot(params):
+attactype = 'attacking'
+keepertype = 'goalkeeping'
+defmidtype = 'defensive & playmaking'
+
+def create_pizza_plot(params,statstype):
 # instantiate PyPizza class
     baker = PyPizza(
         params = params, #fix
@@ -137,7 +161,7 @@ def create_pizza_plot(params):
     )
     # add title
     fig.text(
-        0.515, 0.97, f"{player}'s stats", size=18,
+        0.515, 0.97, f"{player}'s {statstype} stats", size=18,
         ha="center", color="#000000"
     )
     # add subtitle
@@ -163,10 +187,11 @@ plt.style.use('default')
 #if match_id or pos_team or player:
 if player:
     if playerdf['position'].iloc[0] == 'GK':
-        create_pizza_plot(gkparameters)
+        create_pizza_plot(gkparameters,keepertype)
         #params = gkparameters
     else:
-        create_pizza_plot(attack_params)
+        create_pizza_plot(attack_params, attactype)
+        create_pizza_plot(attack_params, attactype)
         #params=attack_params  
 else: 
     st.write("No data available for the selected filters.")
