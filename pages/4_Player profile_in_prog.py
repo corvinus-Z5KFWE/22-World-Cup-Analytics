@@ -21,7 +21,7 @@ gkparams_keys = [
 
 defmidparam_key = [
     "tackles_interceptions", "clearances", "ball_recoveries","blocks",
-    "dribbled_past","gca_defense", "dribbles_completed", "gca_per90",
+    "dribbled_past","dribble_tackles", "dribbles_completed", "gca_per90",
     "passes_total_distance","passes_completed","progressive_passes", "passes_switches"
 ]
 
@@ -122,7 +122,7 @@ defmid_param_mapping = {
     'ball_recoveries': 'Recoveries',
     "blocks": 'Blocks',
     'dribbled_past': 'Player dribbled\nPast',
-    'gca_defense': 'Defensive actions\n leading to goal',
+    'dribble_tackles': 'Number of\n dribblers stopped',
     'dribbles_completed': 'Dribbles completed',
     'gca_per90': 'Goal creating actions\n per 90 minutes',
     'passes_total_distance': 'Total distance\n of passes',
