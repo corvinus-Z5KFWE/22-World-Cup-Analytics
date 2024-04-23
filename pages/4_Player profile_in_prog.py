@@ -25,13 +25,17 @@ defmidparam_key = [
     "passes_total_distance","passes_completed","progressive_passes", "passes_switches"
 ]
 
-gkpercentiles = df[df["position"] == 'GK'][params].quantile(1)
+
 dpercentiles =  df[df["position"] == 'DF'][params].quantile(1)
+dpercentiles2 =  df[df["position"] == 'DF'][defmidparam_key].quantile(1)
+
 mpercentiles =  df[df["position"] == 'MF'][params].quantile(1)
+mpercentiles2 =  df[df["position"] == 'MF'][defmidparam_key].quantile(1)
+
 fpercentiles =  df[df["position"] == 'FW'][params].quantile(1)
+fpercentiles2 =  df[df["position"] == 'FW'][defmidparam_key].quantile(1)
+
 gkstats = df[df["position"] == 'GK'][gkparams_keys].quantile(1)
-print(gkstats)
-print(len(gkstats))
 
 st.sidebar.header("Team")
 pos_team = st.sidebar.multiselect("Filter down to a team:", df["team"].unique())
@@ -50,22 +54,34 @@ def calculate_playervalues(percentiles):
     values = values.iloc[0].tolist()
     return values
 
+def calculate_playerdefmidvalues(percentiles):
+    defmidvalues = round((playerdefmidvalues / percentiles * 100), 2).fillna(0)
+    defmidvalues = values.iloc[0].tolist()
+    return defmidvalues
+
 values = ['0', '0','0','0','0','0','0','0','0','0','0','0']
 
 st.sidebar.header("Player")
 player = st.sidebar.multiselect("Filter down to the player in action:", df["player"].unique())
+#Calculatinf the stats of the players that will be displayed on the pizza plot
+# If the player is goalkeeper we only have to calculate the goalkeeping stats, if the player is not goalkeepers we are calculating the attacking stats together with defensive and playmaking attributes
 if player:
     playerdf = df[df["player"].isin(player)]  #Loc the selected player
     playervalues = playerdf[params]
+    playerdefmidvalues = playerdf[defmidparam_key]
+
     if playerdf['position'].iloc[0] == 'GK':
         playervalues = playerdf[gkparams_keys]
         values = calculate_playervalues(gkstats)
     elif playerdf['position'].iloc[0] == 'DF':
         values = calculate_playervalues(dpercentiles)
+        defmidvalues = calculate_playerdefmidvalues(dpercentiles2)
     elif playerdf['position'].iloc[0] == 'MF':
         values = calculate_playervalues(mpercentiles)
+        defmidvalues = calculate_playerdefmidvalues(mpercentiles2)
     else:
         values = calculate_playervalues(fpercentiles)
+        defmidvalues = calculate_playerdefmidvalues(fpercentiles2)
 else: 
     values = ['0', '0','0','0','0','0','0','0','0','0','0','0']
 
@@ -124,7 +140,7 @@ attactype = 'attacking'
 keepertype = 'goalkeeping'
 defmidtype = 'defensive & playmaking'
 
-def create_pizza_plot(params,statstype):
+def create_pizza_plot(params,values,statstype):
 # instantiate PyPizza class
     baker = PyPizza(
         params = params, #fix
@@ -190,7 +206,7 @@ if player:
         create_pizza_plot(gkparameters,keepertype)
         #params = gkparameters
     else:
-        create_pizza_plot(attack_params, attactype)
+        create_pizza_plot(attack_params, values, attactype)
         create_pizza_plot(defmid_params, defmidtype)
         #params=attack_params  
 else: 
