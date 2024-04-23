@@ -56,7 +56,7 @@ def calculate_playervalues(percentiles):
 
 def calculate_playerdefmidvalues(percentiles):
     defmidvalues = round((playerdefmidvalues / percentiles * 100), 2).fillna(0)
-    defmidvalues = values.iloc[0].tolist()
+    defmidvalues = defmidvalues.iloc[0].tolist()
     return defmidvalues
 
 values = ['0', '0','0','0','0','0','0','0','0','0','0','0']
