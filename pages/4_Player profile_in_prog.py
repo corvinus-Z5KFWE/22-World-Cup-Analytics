@@ -191,7 +191,7 @@ if player:
         #params = gkparameters
     else:
         create_pizza_plot(attack_params, attactype)
-        create_pizza_plot(attack_params, attactype)
+        create_pizza_plot(defmid_params, defmidtype)
         #params=attack_params  
 else: 
     st.write("No data available for the selected filters.")
