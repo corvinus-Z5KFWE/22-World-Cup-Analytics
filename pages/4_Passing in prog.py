@@ -81,7 +81,7 @@ if player:
         play_pattern = passes_df['play_pattern'].iloc[0] 
 
         pitch.scatter(x=passes_df['x_start'], y=passes_df['y_start'], ax=ax)
-        ax.set_title(f'{player}\'s {i+1}. pass in the {comp}', fontsize=11)
+        ax.set_title(f'{player}\'s {i+1}. pass in the {comp}', fontsize=14)
 
         pitch.lines(xstart=passes_df[mask_complete].x_start, ystart=passes_df[mask_complete].y_start,
                     xend=passes_df[mask_complete].x_end, yend=passes_df[mask_complete].y_end,
@@ -93,11 +93,11 @@ if player:
                     lw=6, transparent=True, comet=True, label='uncompleted passes',
                     color='red', ax=ax)
         
-        pitch.scatter(passes_df[mask_goal].x_end, passes_df[mask_goal].y_end, s=90,
+        pitch.scatter(passes_df[mask_goal].x_end, passes_df[mask_goal].y_end, s=100,
                     marker='football', edgecolors='black', c='white', zorder=2,
                     label='Assist', ax=ax)
         
-        pitch.scatter(passes_df[mask_shot].x_end, passes_df[mask_shot].y_end, s=90,
+        pitch.scatter(passes_df[mask_shot].x_end, passes_df[mask_shot].y_end, s=100,
                     edgecolors='white', c='#22312b', zorder=2,
                     label='Shot', ax=ax)
 
@@ -108,11 +108,11 @@ if player:
                     color = '#6CACE4'
                 else:
                     color = '#ED2939'
-                pitch.scatter(x=x['location'][0], y=x['location'][1], c=color, ax=ax, s=90)
+                pitch.scatter(x=x['location'][0], y=x['location'][1], c=color, ax=ax, s=100)
 
-        ax.legend(edgecolor='None', fontsize= 9, loc='upper left', handlelength=4)
+        ax.legend(edgecolor='None', fontsize= 12, loc='upper left', handlelength=4)
         custom_legend_text = f'Pass type: {passtype}\nPass receiver: {receiver}\nPlay type: {play_pattern}\nTechnique: {technique}\nPass Length: {distance}\nPass height: {height}\nTime {timestamp}'
-        ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=11, verticalalignment='top')
+        ax.text(1, 0.95, custom_legend_text, transform=ax.transAxes, fontsize=14, verticalalignment='top')
 
         st.pyplot(fig)
         plt.close(fig)  # Close the figure to avoid memory leaks
