@@ -2,6 +2,8 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import pandas as pd
 from mplsoccer import Pitch
+from statsbombpy import sb
+from mplsoccer import Pitch
 import threading
 
 # Function to plot the pitch
