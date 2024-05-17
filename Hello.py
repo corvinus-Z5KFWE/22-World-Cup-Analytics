@@ -45,7 +45,7 @@ st.markdown("""
 
 # Boxes
 boxes = [
-    {"title": "Overview", "description": "Passing Map & Shot Map & Heatmap of the selected player's actions in the tournament/in the selected match.", "link": "https://22-world-cup-analytics.streamlit.app/#overview"},
+    {"title": "Overview", "description": "Passing Map & Shot Map & Heatmap of the selected player's actions in the tournament/in the selected match.", "link": "https://22-world-cup-analytics.streamlit.app/Overview"},
     {"title": "Player Profile", "description": "Compare a given player's performance to other players operating in a similar position.", "link": "https://22-world-cup-analytics.streamlit.app/Player_profile"},
     {"title": "Passing", "description": "Detailed visualizations with context about every pass of a player in the selected match.", "link": "https://22-world-cup-analytics.streamlit.app/Passing"}
 ]
