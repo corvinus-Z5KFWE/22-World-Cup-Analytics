@@ -52,7 +52,7 @@ boxes = [
 
 for box in boxes:
     st.markdown(f"""
-        <a href="/{box['link']}" target="_self">
+        <a href="{box['link']}" target="_self">
             <div class="box">
                 <h2>{box['title']}</h2>
                 <p>{box['description']}</p>
