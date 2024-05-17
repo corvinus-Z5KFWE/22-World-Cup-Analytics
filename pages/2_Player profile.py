@@ -203,7 +203,7 @@ plt.style.use('default')
 #if match_id or pos_team or player:
 if player:
     if playerdf['position'].iloc[0] == 'GK':
-        create_pizza_plot(gkparameters,keepertype)
+        create_pizza_plot(gkparameters,values,keepertype)
         #params = gkparameters
     else:
         create_pizza_plot(attack_params, values, attactype)
