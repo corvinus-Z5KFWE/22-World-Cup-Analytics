@@ -93,11 +93,11 @@ if player:
                     lw=6, transparent=True, comet=True, label='uncompleted passes',
                     color='red', ax=ax)
         
-        pitch.scatter(passes_df[mask_goal].x_end, passes_df[mask_goal].y_end, s=100,
+        pitch.scatter(passes_df[mask_goal].x_end, passes_df[mask_goal].y_end, s=150,
                     marker='football', edgecolors='black', c='white', zorder=2,
                     label='Assist', ax=ax)
         
-        pitch.scatter(passes_df[mask_shot].x_end, passes_df[mask_shot].y_end, s=100,
+        pitch.scatter(passes_df[mask_shot].x_end, passes_df[mask_shot].y_end, s=150,
                     edgecolors='white', c='#22312b', zorder=2,
                     label='Shot', ax=ax)
 
@@ -108,7 +108,7 @@ if player:
                     color = '#6CACE4'
                 else:
                     color = '#ED2939'
-                pitch.scatter(x=x['location'][0], y=x['location'][1], c=color, ax=ax, s=100)
+                pitch.scatter(x=x['location'][0], y=x['location'][1], c=color, ax=ax, s=150)
 
         ax.legend(edgecolor='None', fontsize= 12, loc='upper left', handlelength=4)
         custom_legend_text = f'Pass type: {passtype}\nPass receiver: {receiver}\nPlay type: {play_pattern}\nTechnique: {technique}\nPass Length: {distance}\nPass height: {height}\nTime {timestamp}'
